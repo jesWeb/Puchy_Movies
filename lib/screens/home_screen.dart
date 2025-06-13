@@ -8,16 +8,25 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Peliculas en Cartelera', style: TextStyle(color: Colors.white) ),
+        title: Text(
+          'Peliculas en Cartelera',
+          style: TextStyle(color: Colors.white, fontSize: 20 , fontWeight: FontWeight.w400),
+        ),
         elevation: 0,
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search_outlined) ),
+          IconButton(onPressed: () {}, icon: Icon(Icons.search_outlined)),
         ],
       ),
-      body: Column(
-        children: [
-          CardSwiper()
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            //tarjetas main
+            CardSwiper(),
+            //slider
+            MovieSlider(),
+      
+          ],
+        ),
       ),
     );
   }
