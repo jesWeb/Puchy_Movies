@@ -10,6 +10,15 @@ class CardSwiper extends StatelessWidget {
   Widget build(BuildContext context) {
     //el context es del arbol de widgetes y lo tomara antes la mediada
     final size = MediaQuery.of(context).size;
+
+    if (movies.isEmpty) {
+      return SizedBox(
+        width: double.infinity,
+        height: size.height * 0.5,
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return SizedBox(
       width: double.infinity,
       height: size.height * 0.45,
@@ -30,7 +39,7 @@ class CardSwiper extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
                 placeholder: AssetImage('assets/no-image.jpg'),
-                image: NetworkImage(movie.fullPoster),
+                image: NetworkImage(movie.fullPosterImg),
                 fit: BoxFit.cover,
               ),
             ),

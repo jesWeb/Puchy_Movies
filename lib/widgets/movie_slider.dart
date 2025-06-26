@@ -1,8 +1,11 @@
 //este se tratara de ser reutilizable
 import 'package:flutter/material.dart';
+import 'package:movies_app/models/models.dart';
 
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+  final List<Pelicula> movies;
+  final String? title;
+  const MovieSlider({super.key, required this.movies, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -12,22 +15,24 @@ class MovieSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              'Populares',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                // color: Colors.white,
+          if (title != null)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                title!,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  // color: Colors.white,
+                ),
               ),
             ),
-          ),
+
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 15,
-              itemBuilder: (_, int index) => _MoviePoster(),
+              itemCount: movies.length,
+              itemBuilder: (_, int index) => _MoviePoster(movies[index]),
             ),
           ),
         ],
@@ -37,6 +42,10 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
+  final Pelicula movie;
+
+  const _MoviePoster( this.movie);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,14 +56,16 @@ class _MoviePoster extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'detalles', arguments: 'movies-instace'),
+            onTap: () => Navigator.pushNamed(
+              context,
+              'detalles',
+              arguments: 'movies-instace',
+            ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
                 placeholder: AssetImage('assets/no-image.jpg'),
-                image: NetworkImage(
-                  'https://picsum.photos/300/400',
-                ),
+                image: NetworkImage(movie.fullPosterImg),
                 width: 130,
                 height: 190,
                 fit: BoxFit.cover,
@@ -63,7 +74,7 @@ class _MoviePoster extends StatelessWidget {
           ),
           // SizedBox(height: 5),
           Text(
-            'Peliculas',
+            movie.title,
             maxLines: 3,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/widgets/cating_card.dart';
+// import 'package:movies_app/models/models.dart';
+import 'package:movies_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -7,7 +8,9 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //  Cambiar luego por una instancia de movie
-    final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'no Disponible';
+    final String movie =
+        ModalRoute.of(context)?.settings.arguments.toString() ??
+        'no Disponible';
 
     return Scaffold(
       body: CustomScrollView(
@@ -20,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
               _PosterAndTitle(),
               _Overview(),
               _Overview(),
-              CatingCard()
+              CatingCard(),
             ]),
           ),
         ],
