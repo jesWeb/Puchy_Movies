@@ -15,11 +15,11 @@ class MovieSlider extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null)
+          if (this.title != null)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                title!,
+                this.title!,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -42,15 +42,16 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
+  
   final Pelicula movie;
 
-  const _MoviePoster( this.movie);
+  const _MoviePoster(this.movie);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 130,
-      height: 190,
+      height: 170,
       // color: Colors.amber,
       margin: EdgeInsets.all(10),
       child: Column(
@@ -67,7 +68,7 @@ class _MoviePoster extends StatelessWidget {
                 placeholder: AssetImage('assets/no-image.jpg'),
                 image: NetworkImage(movie.fullPosterImg),
                 width: 130,
-                height: 190,
+                height: 170,
                 fit: BoxFit.cover,
               ),
             ),
