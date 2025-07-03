@@ -13,7 +13,7 @@ class CatingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final peliculasProvider = Provider.of<MoviesProvider>(
       context,
-      listen: false,
+      listen:false,
     );
     return FutureBuilder(
       future: peliculasProvider.getMovieCast(movieId),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/providers/movies_provider.dart';
+import 'package:movies_app/search/search_delegate.dart';
 import 'package:movies_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,12 @@ class HomeScreen extends StatelessWidget {
         ),
         elevation: 0,
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search_outlined)),
+          IconButton(
+            onPressed: () =>
+                showSearch(context: context, delegate: movieSearchDelegate()),
+            icon: Icon(Icons.search_outlined),
+            color: Colors.white,
+          ),
         ],
       ),
       body: SingleChildScrollView(
