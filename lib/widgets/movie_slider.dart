@@ -5,7 +5,12 @@ import 'package:movies_app/models/models.dart';
 class MovieSlider extends StatefulWidget {
   final List<Pelicula> movies;
   final String? title;
-  const MovieSlider({super.key, required this.movies, this.title, required this.onNextPage});
+  const MovieSlider({
+    super.key,
+    required this.movies,
+    this.title,
+    required this.onNextPage,
+  });
   final Function onNextPage;
 
   @override
@@ -13,25 +18,22 @@ class MovieSlider extends StatefulWidget {
 }
 
 class _MovieSliderState extends State<MovieSlider> {
-  
-  final ScrollController scrollController =  ScrollController();
+  final ScrollController scrollController = ScrollController();
 
-  
   @override
   void initState() {
     super.initState();
-    scrollController.addListener((){
-      if (scrollController.position.pixels >= scrollController.position.maxScrollExtent - 500) {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+          scrollController.position.maxScrollExtent - 500) {
         print('Obtener sigguiente pagina');
-         widget.onNextPage();
-        
+        widget.onNextPage();
       }
     });
   }
 
   @override
   void dispose() {
-    
     super.dispose();
   }
 
@@ -72,24 +74,20 @@ class _MovieSliderState extends State<MovieSlider> {
 
 class _MoviePoster extends StatelessWidget {
   final Pelicula movie;
-
   const _MoviePoster(this.movie);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 130,
-      height: 170,
+      height: 150,
       // color: Colors.amber,
       margin: EdgeInsets.all(10),
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(
-              context,
-              'detalles',
-              arguments: 'movies-instace',
-            ),
+            onTap: () =>
+                Navigator.pushNamed(context, 'detalles', arguments: movie),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
@@ -97,16 +95,18 @@ class _MoviePoster extends StatelessWidget {
                 image: NetworkImage(movie.fullPosterImg),
                 width: 130,
                 height: 170,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
           ),
-          // SizedBox(height: 5),
-          Text(
-            movie.title,
-            maxLines: 3,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
+          SizedBox(height: 8),
+          Expanded(
+            child: Text(
+              movie.title,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),

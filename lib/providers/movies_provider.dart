@@ -28,9 +28,9 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   getOnDisplayMovies() async {
-    final JsonData = await this._getJsonData('3/movie/now_playing');
+    final jsonData = await _getJsonData('3/movie/now_playing');
 
-    final nowPlayingResponse = NewPlayResponse.fromJson(JsonData);
+    final nowPlayingResponse = NewPlayResponse.fromJson(jsonData);
     onDisplayMovies = nowPlayingResponse.results;
     notifyListeners();
   }
