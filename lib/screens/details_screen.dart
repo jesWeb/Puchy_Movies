@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/models.dart';
-// import 'package:movies_app/models/models.dart';
 import 'package:movies_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -24,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
               _PosterAndTitle(movie),
               _Overview(movie),
               _Overview(movie),
-              CatingCard(),
+              CatingCard(movieId: movie.id),
             ]),
           ),
         ],
@@ -77,7 +76,7 @@ class _PosterAndTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    // final TextTheme textTheme = Theme.of(context).textTheme;
 
     final size = MediaQuery.of(context).size;
 
